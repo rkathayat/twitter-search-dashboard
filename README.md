@@ -38,16 +38,17 @@ python -m venv env
 Activate the environment:
 
 On Windows:
-bash
+
 env\Scripts\activate
 On macOS/Linux:
-bash
+
 source env/bin/activate
+
 ### Step 3: Install Dependencies
 pip install -r requirements.txt
 
 ### Step 4: Set Up Twitter API Keys
-Create a Twitter Developer account at Twitter Developer Portal.
+Create a Twitter Developer account at the Twitter Developer Portal.
 Set up a new app and obtain the following credentials:
 API Key
 API Secret Key
