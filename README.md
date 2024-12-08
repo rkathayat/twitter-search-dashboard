@@ -12,7 +12,7 @@ This is a simple **Twitter Search Dashboard** built using **Django** and **Boots
 - **Backend**: Django
 - **Frontend**: HTML, CSS (Bootstrap)
 - **API**: Twitter API (for fetching tweets)
-- **Database**: SQLite (or any other Django-supported DB)
+- **Database**: SQLite 
 - **Others**: JavaScript (for dynamic search functionality)
 
 ## Installation
@@ -56,8 +56,11 @@ Access Token
 Access Token Secret
 
 TWITTER_API_KEY = 'your_api_key'
+
 TWITTER_API_SECRET_KEY = 'your_api_secret_key'
+
 TWITTER_ACCESS_TOKEN = 'your_access_token'
+
 TWITTER_ACCESS_TOKEN_SECRET = 'your_access_token_secret'
 
 ### Step 5: Run Database Migrations
