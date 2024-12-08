@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -124,8 +125,13 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Twitter API Keys
-TWITTER_API_KEY = "I5ygwKUOB62zYdkWQ7NR8NvUR"
-TWITTER_API_SECRET = "Jn2DStdwYml1dRyF4KHiOWh8dzdaX6PzCIlmoHSLJd6XcwqZge"
-TWITTER_ACCESS_TOKEN = "1248595637932679174-8n4KACJJLOi3n75xYGn6xXpSNM18uH"
-TWITTER_ACCESS_TOKEN_SECRET = "3Iw8r6IUpTh53CEnw6xpa3yD1KPYr9pV9nZtJvLt0e9kq"
 
+import os
+
+API_KEYS = {
+    'service_one': os.getenv('TWITTER_API_KEY'),
+    'service_two': os.getenv('TWITTER_API_SECRET'),
+    'service_three': os.getenv('TWITTER_ACCESS_TOKEN'),
+    'service_four': os.getenv('TWITTER_ACCESS_TOKEN_SECRET'),
+    'service_five': os.getenv('TWITTER_BEARER_TOKEN'),
+}

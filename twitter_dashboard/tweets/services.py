@@ -2,21 +2,28 @@ import tweepy
 from django.conf import settings
 
 def fetch_tweets(query, count=10):
-    auth = tweepy.OAuth1UserHandler(
-        settings.TWITTER_API_KEY,
-        settings.TWITTER_API_SECRET,
-        settings.TWITTER_ACCESS_TOKEN,
-        settings.TWITTER_ACCESS_TOKEN_SECRET,
+    client = tweepy.Client(
+        bearer_token=settings.TWITTER_BEARER_TOKEN,
+        consumer_key=settings.TWITTER_API_KEY,
+        consumer_secret=settings.TWITTER_API_SECRET,
+        access_token=settings.TWITTER_ACCESS_TOKEN,
+        access_token_secret=settings.TWITTER_ACCESS_TOKEN_SECRET,
     )
-    api = tweepy.API(auth)
-    tweets = api.search_tweets(q=query, count=count, tweet_mode="extended")
+    
+    response = client.search_recent_tweets(query=query, max_results=count, tweet_fields=['created_at', 'public_metrics'])
+    
+    if response.errors:
+        print(f"Error: {response.errors}")
+        return []
+    
+    tweets = response.data
     return [
         {
-            "username": tweet.user.screen_name,
-            "text": tweet.full_text,
+            "username": tweet.author_id,  # Note: Twitter API v2 does not return username directly
+            "text": tweet.text,
             "created_at": tweet.created_at,
-            "likes": tweet.favorite_count,
-            "retweets": tweet.retweet_count,
+            "retweet_count": tweet.public_metrics['retweet_count'],
+            "favorite_count": tweet.public_metrics['like_count'],
         }
         for tweet in tweets
     ]
